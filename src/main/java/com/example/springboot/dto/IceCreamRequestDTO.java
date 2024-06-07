@@ -24,19 +24,23 @@ public class IceCreamRequestDTO {
     private List<Long> flavors;
     private List<Long> toppings;
 
+    private String description;
+
     public IceCreamRequestDTO(IceCreamRequestDTO iceCreamRequestDTO) {
         this.id = iceCreamRequestDTO.getId();
         this.name = iceCreamRequestDTO.getName();
         this.cone = iceCreamRequestDTO.getCone();
         this.flavors = iceCreamRequestDTO.getFlavors();
         this.toppings = iceCreamRequestDTO.getToppings();
+        this.description = iceCreamRequestDTO.getDescription();
     }
 
-    public IceCreamRequestDTO(long id, String name, Long cone, List<Long> flavors, List<Long> toppings) {
+    public IceCreamRequestDTO(long id, String name, Long cone, List<Long> flavors, List<Long> toppings, String description) {
         this.id = id;
         this.name = name;
         this.cone = cone;
         this.flavors = flavors;
         this.toppings = toppings;
+        this.description = description;
     }
 }

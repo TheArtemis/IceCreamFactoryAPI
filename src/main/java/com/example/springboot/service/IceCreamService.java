@@ -67,7 +67,8 @@ public class IceCreamService {
         List<Long> iceCreamToppings = iceCream.getToppings().stream().map(Topping::getId).toList();
 
         long coneId = iceCream.getCone().getId();
-        return new IceCreamRequestDTO(iceCreamId, iceCreamName, coneId, iceCreamFlavors, iceCreamToppings);
+        String iceCreamDescription = iceCream.getDescription();
+        return new IceCreamRequestDTO(iceCreamId, iceCreamName, coneId, iceCreamFlavors, iceCreamToppings, iceCreamDescription);
     }
 
     public IceCream toIceCream(IceCreamRequestDTO iceCreamRequestDTO) throws ResourceNotFoundException {
@@ -89,8 +90,8 @@ public class IceCreamService {
 
         String iceCreamName = iceCreamRequestDTO.getName();
         long iceCreamId = iceCreamRequestDTO.getId();
-
-        return new IceCream(iceCreamId, iceCreamName, iceCreamCone.get(), iceCreamFlavorsSet, iceCreamToppingsSet);
+        String iceCreamDescription = iceCreamRequestDTO.getDescription();
+        return new IceCream(iceCreamId, iceCreamName, iceCreamCone.get(), iceCreamFlavorsSet, iceCreamToppingsSet, iceCreamDescription);
     }
 
     // writes all the non-null fields of the first DTO with the second one.

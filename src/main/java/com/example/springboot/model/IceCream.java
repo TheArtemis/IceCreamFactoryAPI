@@ -62,6 +62,8 @@ public class IceCream {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "icecream_topping")
     private Set<Topping> toppings;
+
+    private String description;
 }
 
 //manytomany
