@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "http://127.0.0.1:5173")
 @RequestMapping("/iceCream")
 @Tag(name = "Ice Cream")
 public class IceCreamController {
@@ -45,6 +46,7 @@ public class IceCreamController {
                     )
             }
     )
+        
     @GetMapping("/{iceCreamId}")
     public IceCreamDTO getIceCreamById(@PathVariable long iceCreamId) {
         Optional<IceCream> iceCream = iceCreamService.findIceCreamById(iceCreamId);
@@ -56,6 +58,7 @@ public class IceCreamController {
         return new IceCreamDTO(1, "IceCream exists", iceCream.get());
     }
 
+    
     @Operation(
             description = "Post endpoint to add a new Ice Cream",
             summary = "Use the Post endpoint to add a new Ice Cream",
@@ -78,6 +81,8 @@ public class IceCreamController {
 
         try {
             IceCream iceCream = iceCreamService.toIceCream(iceCreamRequestDTO);
+            System.out.println(iceCreamRequestDTO);
+            System.out.println(iceCream);
             iceCreamService.saveIceCream(iceCream);
             return new IceCreamDTO(1, "IceCream added", iceCream);
         } catch (ResourceNotFoundException e) {

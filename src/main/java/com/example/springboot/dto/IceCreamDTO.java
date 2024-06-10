@@ -15,5 +15,4 @@ public class IceCreamDTO  extends BaseDTO{
         super(code, message);
         this.iceCream = iceCream;
     }
-
 }

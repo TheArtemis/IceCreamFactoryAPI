@@ -3,10 +3,6 @@ package com.example.springboot.model;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.Fetch;
-import org.springframework.data.util.Pair;
-
-import java.util.List;
 import java.util.Set;
 
 @ToString
@@ -25,6 +21,9 @@ public class IceCream {
 
     @Schema(name="Ice Cream name", example = "Pistacchione")
     private String name;
+
+    @Schema(name="Ice Cream description", example = "The best Ice Cream")
+    private String description;
 
     @Schema(name="Cone", example = """
             {
@@ -61,9 +60,7 @@ public class IceCream {
             "            }")
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "icecream_topping")
-    private Set<Topping> toppings;
-
-    private String description;
+    private Set<Topping> toppings;    
 }
 
 //manytomany

@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class IceCreamService {
@@ -62,13 +61,13 @@ public class IceCreamService {
     public IceCreamRequestDTO toIceCreamRequestDTO(IceCream iceCream) {
         long iceCreamId = iceCream.getId();
         String iceCreamName = iceCream.getName();
-
+        String iceCreamDescription = iceCream.getDescription();
         List<Long> iceCreamFlavors = iceCream.getFlavors().stream().map(Flavor::getId).toList();
         List<Long> iceCreamToppings = iceCream.getToppings().stream().map(Topping::getId).toList();
 
         long coneId = iceCream.getCone().getId();
-        String iceCreamDescription = iceCream.getDescription();
-        return new IceCreamRequestDTO(iceCreamId, iceCreamName, coneId, iceCreamFlavors, iceCreamToppings, iceCreamDescription);
+        
+        return new IceCreamRequestDTO(iceCreamId, iceCreamName, iceCreamDescription, coneId, iceCreamFlavors, iceCreamToppings);
     }
 
     public IceCream toIceCream(IceCreamRequestDTO iceCreamRequestDTO) throws ResourceNotFoundException {
@@ -91,7 +90,7 @@ public class IceCreamService {
         String iceCreamName = iceCreamRequestDTO.getName();
         long iceCreamId = iceCreamRequestDTO.getId();
         String iceCreamDescription = iceCreamRequestDTO.getDescription();
-        return new IceCream(iceCreamId, iceCreamName, iceCreamCone.get(), iceCreamFlavorsSet, iceCreamToppingsSet, iceCreamDescription);
+        return new IceCream(iceCreamId, iceCreamName, iceCreamDescription, iceCreamCone.get(), iceCreamFlavorsSet, iceCreamToppingsSet);
     }
 
     // writes all the non-null fields of the first DTO with the second one.
@@ -110,6 +109,9 @@ public class IceCreamService {
 
         if (dto1.getToppings() != null)
             iceCreamRequestDTO.setToppings(dto1.getToppings());
+
+        if (dto1.getDescription() != null && !dto1.getDescription().isEmpty())
+            iceCreamRequestDTO.setDescription(dto1.getDescription());
 
         return iceCreamRequestDTO;
     }

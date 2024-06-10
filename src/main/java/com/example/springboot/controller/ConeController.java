@@ -5,16 +5,14 @@ import com.example.springboot.model.Cone;
 import com.example.springboot.repository.ConeRepository;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.transaction.Transactional;
-import lombok.AllArgsConstructor;
-import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
-import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/cone")
+@CrossOrigin(origins = "http://127.0.0.1:5173")
 @Tag(name = "Cone")
 public class ConeController {
     @Autowired
