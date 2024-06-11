@@ -2,27 +2,19 @@ package com.example.springboot.controller;
 
 import com.example.springboot.dto.IceCreamDTO;
 import com.example.springboot.dto.IceCreamRequestDTO;
+import com.example.springboot.dto.IceCreamsDTO;
 import com.example.springboot.exception.ResourceNotFoundException;
-
-import com.example.springboot.model.Flavor;
 import com.example.springboot.model.IceCream;
-import com.example.springboot.repository.ConeRepository;
-import com.example.springboot.repository.FlavorRepository;
-import com.example.springboot.repository.IceCreamRepository;
-import com.example.springboot.repository.ToppingRepository;
 import com.example.springboot.service.IceCreamService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.transaction.Transactional;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @RestController
 @CrossOrigin(origins = "http://127.0.0.1:5173")
@@ -58,7 +50,15 @@ public class IceCreamController {
         return new IceCreamDTO(1, "IceCream exists", iceCream.get());
     }
 
-    
+	@GetMapping("/all")
+    public IceCreamsDTO getMethodName() {
+        List<IceCream> iceCreams = iceCreamService.findAllIceCreams();
+
+        if (iceCreams.isEmpty())
+            return new IceCreamsDTO(-1, "There are no IceCreams", iceCreams);
+		return new IceCreamsDTO(1, "Ice Cream list", iceCreams);
+		}
+
     @Operation(
             description = "Post endpoint to add a new Ice Cream",
             summary = "Use the Post endpoint to add a new Ice Cream",

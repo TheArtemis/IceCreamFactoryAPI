@@ -58,6 +58,10 @@ public class IceCreamService {
         iceCreamRepository.deleteById(id);
     }
 
+    public List<IceCream> findAllIceCreams() {
+        return iceCreamRepository.findAll();
+    }
+
     public IceCreamRequestDTO toIceCreamRequestDTO(IceCream iceCream) {
         long iceCreamId = iceCream.getId();
         String iceCreamName = iceCream.getName();
