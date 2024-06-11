@@ -1,7 +1,6 @@
 package com.example.springboot.dto;
 
 import com.example.springboot.model.Flavor;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

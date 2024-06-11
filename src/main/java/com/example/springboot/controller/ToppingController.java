@@ -1,18 +1,11 @@
 package com.example.springboot.controller;
-
-import com.example.springboot.dto.FlavorDTO;
-import com.example.springboot.dto.TempDTO;
 import com.example.springboot.dto.ToppingDTO;
-import com.example.springboot.model.Flavor;
 import com.example.springboot.model.Topping;
 import com.example.springboot.repository.ToppingRepository;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 
 @RestController

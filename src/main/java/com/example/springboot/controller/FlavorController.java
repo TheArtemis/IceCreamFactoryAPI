@@ -2,7 +2,6 @@ package com.example.springboot.controller;
 
 import com.example.springboot.dto.FlavorDTO;
 import com.example.springboot.model.Flavor;
-import com.example.springboot.repository.ConeRepository;
 import com.example.springboot.repository.FlavorRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -10,9 +9,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 
 @RestController

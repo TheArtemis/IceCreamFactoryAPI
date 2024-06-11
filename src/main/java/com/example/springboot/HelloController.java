@@ -1,7 +1,6 @@
 package com.example.springboot;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.websocket.server.PathParam;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
