@@ -1,6 +1,4 @@
 package com.example.springboot.dto;
-
-import com.example.springboot.model.Flavor;
 import com.example.springboot.model.Topping;
 import lombok.Getter;
 import lombok.Setter;
