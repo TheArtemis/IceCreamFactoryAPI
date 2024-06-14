@@ -1,15 +1,22 @@
 package com.example.springboot.controller;
 
 import com.example.springboot.dto.FlavorDTO;
+import com.example.springboot.dto.FlavorsDTO;
 import com.example.springboot.model.Flavor;
 import com.example.springboot.repository.FlavorRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 import java.util.Optional;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @CrossOrigin(origins = "http://127.0.0.1:5173")
@@ -51,6 +58,17 @@ public class FlavorController {
         }
         return new FlavorDTO(1, "Flavor exists", flavor.get());
     }
+
+    @GetMapping("/all")
+    public FlavorsDTO getAllFlavors() {
+
+        List<Flavor> flavors = flavorRepository.findAll();
+        if (flavors.isEmpty())
+			return new FlavorsDTO(-1, "There are no flavors", flavors);
+		String message = "I found " + flavors.size() + " flavors"; 
+		return new FlavorsDTO(1, message, flavors);        
+    }
+    
 
     @Operation(
             description = "Post endpoint to add a new Flavor",

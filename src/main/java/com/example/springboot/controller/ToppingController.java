@@ -1,11 +1,14 @@
 package com.example.springboot.controller;
 import com.example.springboot.dto.ToppingDTO;
+import com.example.springboot.dto.ToppingsDTO;
 import com.example.springboot.model.Topping;
 import com.example.springboot.repository.ToppingRepository;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -29,6 +32,17 @@ public class ToppingController {
 
         toppingRepository.save(topping.get());
         return new ToppingDTO(1, "Topping found", topping.get());
+    }
+
+    @GetMapping("/all")
+    public ToppingsDTO getAllToppings(){
+        List<Topping> toppings = toppingRepository.findAll();
+        if (toppings.isEmpty())
+            return new ToppingsDTO(-1, "There are no toppings!", toppings);
+
+        String message = "I found " + toppings.size() + " toppings";
+
+        return new ToppingsDTO(1, message, toppings);
     }
 
     @PostMapping("/add")

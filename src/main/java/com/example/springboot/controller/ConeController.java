@@ -35,6 +35,16 @@ public class ConeController {
         return new ConeDTO(1, "Cone exists", cone.get());
     }
 
+    @GetMapping("/all")
+    public ConesDTO getAllCones(){
+        List<Cone> cones = coneRepository.findAll();
+        if (cones.isEmpty())
+            return new ConesDTO(-1, "There are no cones!", cones);
+
+        String message = "I found " + cones.size() + " cones";
+        return new ConesDTO(1, message, cones);
+    }
+
     @GetMapping("/expensiveCones")
     public ConesDTO getExpensiveCones() {
         List<Cone> coneList = coneRepository.findExpensiveCones();
